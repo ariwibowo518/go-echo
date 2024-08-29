@@ -45,14 +45,14 @@ jobs:
         DOCKER_USERNAME: ${{ secrets.USERNAME }}
       run: |
         cd infra
-        kustomize edit set image argo-app=$DOCKER_USERNAME/argo-app:$GITHUB_SHA
+        kustomize edit set image argo-app=$DOCKER_USERNAME/argo-app:$github.ref_name
         cat kustomization.yml
         
     - name: Commit files
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        git commit -am "rolling image to tag $GITHUB_SHA"
+        git commit -am "rolling image to tag $github.ref_name"
 
     - name: Push changes
       uses: ad-m/github-push-action@master
