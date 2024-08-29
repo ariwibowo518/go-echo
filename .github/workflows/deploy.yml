@@ -23,7 +23,7 @@ jobs:
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
           repository: ${{ secrets.USERNAME }}/argo-app
-          tags: ${{ github.sha }}, latest
+          tags: ${{ github.ref_name }}, latest
           path: ./app
 
   deploy:
